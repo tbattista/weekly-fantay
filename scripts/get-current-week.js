@@ -8,9 +8,9 @@ function getCurrentNFLWeek() {
   const now = new Date();
   const year = now.getFullYear();
   
-  // NFL 2025 Season starts September 4, 2025 (Week 1)
+  // NFL 2024 Season started September 5, 2024 (Week 1)
   // Adjust this date each season
-  const seasonStart = new Date('2025-09-04T00:00:00-05:00');
+  const seasonStart = new Date('2024-09-05T00:00:00-05:00');
   
   // Calculate weeks since season start
   const diffTime = now - seasonStart;

@@ -13,7 +13,7 @@ const OpenAI = require('openai');
 // Configuration
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const CURRENT_WEEK = require('./get-current-week.js');
-const SEASON_YEAR = 2025;
+const SEASON_YEAR = 2024; // Current NFL season
 
 // Initialize OpenAI client
 if (!OPENAI_API_KEY) {
@@ -228,12 +228,12 @@ async function generateWeeklyData() {
     const prompt = generatePrompt(CURRENT_WEEK, SEASON_YEAR, getCurrentDateET());
     
     console.log('📡 Calling OpenAI API...');
-    console.log(`Model: gpt-4-turbo`);
+    console.log(`Model: gpt-4o (OpenAI's most capable available model)`);
     console.log('');
     
-    // Call OpenAI API
+    // Call OpenAI API with gpt-4o (best available model)
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4-turbo',
+      model: 'gpt-4o',
       messages: [
         {
           role: 'system',
@@ -244,8 +244,8 @@ async function generateWeeklyData() {
           content: prompt
         }
       ],
-      temperature: 0.3, // Lower temperature for more consistent output
-      max_tokens: 16000 // Enough for comprehensive data
+      temperature: 0.3,
+      max_tokens: 16000 // gpt-4o supports up to 16k output tokens
     });
     
     const responseText = completion.choices[0].message.content;
